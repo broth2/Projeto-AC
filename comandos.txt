@@ -1,0 +1,615 @@
+PORTO
+
+conf t
+router ospf 1
+router-id 1.1.1.1
+exit
+
+mpls ip
+ip cef
+
+interface f0/1
+ip address 10.0.0.65 255.255.255.192
+ip ospf 1 area 0
+no shut
+
+interface f1/0 
+ip address 10.0.0.1 255.255.255.192
+ip ospf 1 area 0
+no shut
+
+interface f6/1 
+no shut
+
+interface f1/1 
+ip address 10.0.1.201 255.255.255.252
+ip ospf 1 area 0 
+no shut
+
+interface f0/0 
+ip address 10.0.1.205 255.255.255.252
+ip ospf 1 area 0 
+no shut
+
+end
+write
+
+
+conf t
+mpls traffic-eng tunnels
+
+interface Loopback0
+ip address 10.0.1.214 255.255.255.255
+ip ospf 1 area 0
+
+int f0/0
+mpls traffic-eng tunnels
+ip rsvp bandwidth 5000 5000
+
+int f0/1
+ip policy route-map VXLAN-UDP
+mpls traffic-eng tunnels
+
+router ospf 1
+mpls traffic-eng router-id Loopback0
+mpls traffic-eng area 0
+
+int Tunnel1
+ip unnumbered loopback0
+tunnel destination 10.0.1.215
+tunnel mode mpls traffic-eng
+tunnel mpls traffic-eng bandwidth 5000
+tunnel mpls traffic-eng path-option 1 explicit name path1
+exit
+
+ip explicit-path name path1 enable
+next-address 10.0.1.206
+next-address 10.0.1.194
+
+ip access-list extended L101
+permit UDP any any eq 8472
+
+route-map VXLAN-UDP permit 10
+match ip address L101
+set interface Tunnel1
+
+-------------------------------------------------------
+
+AVEIRO
+
+conf t
+mpls ip
+ip cef
+
+router ospf 1
+router-id 1.1.1.2
+
+int f1/1 
+ip address 10.0.1.202 255.255.255.252
+mpls ip
+no shut
+ip ospf 1 area 0 
+
+int f1/0 
+ip address 10.0.1.198 255.255.255.252
+mpls ip
+no shut
+ip ospf 1 area 0
+
+int f0/0
+ip address 10.0.0.129 255.255.255.252
+ip ospf 1 area 0
+mpls ip
+no shut
+
+int f0/1 
+ip address 10.0.0.194 255.255.255.192
+mpls ip
+ip ospf 1 area 0
+no shut
+
+end
+write
+
+---------------------------------------------------
+
+COIMBRA:
+
+conf t
+
+router ospf 1
+router-id 1.1.1.3
+
+mpls ip 
+ip cef
+
+int f1/1 
+ip address 10.0.1.1  255.255.255.192
+ip ospf 1 area 0
+mpls ip
+no shut
+
+int f1/0 
+ip address 10.0.1.197  255.255.255.252
+ip ospf 1 area 0
+mpls ip
+no shut
+
+int f0/0 
+ip address 10.0.1.206  255.255.255.252
+ip ospf 1 area 0
+mpls ip
+no shut
+
+int f0/1 
+ip address 10.0.1.193  255.255.255.252
+mpls ip
+ip ospf 1 area 0
+no shut
+
+end
+write
+
+conf t
+mpls traffic-eng tunnels
+interface loopback0
+ip address 10.0.1.253 255.255.255.255
+ip ospf 1 area 0
+
+int f0/0
+mpls traffic-eng tunnels
+ip rsvp bandwidth 5000 5000
+
+int f0/1
+mpls traffic-eng tunnels
+ip rsvp bandwidth 5000 5000
+
+router ospf 1
+mpls traffic-eng router-id loopback0
+mpls traffic-eng area 0
+end
+write
+
+NAO METI ISTO
+---------------------------------
+conf t				|
+int f1/0			|
+mpls traffic-eng tunnels	|
+ip rsvp bandwidth 5000 5000	|
+end				|
+write				|
+---------------------------------
+
+-------------------------------------------------------
+
+LISBOA:
+
+conf t
+
+mpls ip
+router ospf 1
+router-id 1.1.1.4
+ip cef
+
+
+int f0/0 
+ip address 10.0.1.65  255.255.255.192
+mpls ip
+ip ospf 1 area 0
+no shut
+mpls traffic-eng tunnels
+
+int f0/1
+ip address 10.0.1.194  255.255.255.252
+ip ospf 1 area 0
+mpls ip
+no shut
+
+int f6/1
+no shut
+exit
+
+conf t
+
+mpls traffic-eng tunnels
+
+int loopback0
+ip address 10.0.1.215 255.255.255.255
+ip ospf 1 area 0
+exit
+
+router ospf 1
+mpls traffic-eng area 0
+mpls traffic-eng router-id loopback0
+
+int f0/1
+mpls traffic-eng tunnels
+ip rsvp bandwidth 5000 5000
+
+int f0/0
+mpls traffic-eng tunnels
+ip policy route-map VXLAN-UDP
+
+int Tunnel1
+ip unnumbered loopback0
+tunnel destination 10.0.1.214
+tunnel mode mpls traffic-eng
+tunnel mpls traffic-eng bandwidth 5000
+tunnel mpls traffic-eng path-option 1 explicit name path1
+exit
+
+ip explicit-path name path1 enable
+next-address 10.0.1.193
+next-address 10.0.1.205
+
+ip access-list extended L101
+permit UDP any any eq 8472
+
+route-map VXLAN-UDP permit 10
+match ip address L101
+set interface Tunnel1
+
+
+
+end
+write
+
+
+---------------------------------------------------------------------------
+
+VyOS1 - LISBOA
+
+sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
+reboot
+
+configure
+set interfaces ethernet eth0 address 10.0.1.66/26
+set interfaces dummy dum0 address 10.0.1.208/32
+set protocols ospf area 0 network 10.0.1.64/26
+set protocols ospf area 0 network 10.0.1.208/32
+set system host-name DCL1
+
+set interfaces ethernet eth2 vif 20
+set interfaces ethernet eth2 vif 30
+
+set protocols bgp system-as 43100
+set protocols bgp address-family l2vpn-evpn advertise-all-vni
+set protocols bgp parameters router-id 10.0.1.208
+set protocols bgp neighbor 10.0.1.211 peer-group evpn
+set protocols bgp neighbor 10.0.1.212 peer-group evpn
+set protocols bgp peer-group evpn update-source dum0
+set protocols bgp peer-group evpn remote-as 43100
+set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
+set protocols bgp peer-group evpn address-family l2vpn-evpn route-reflector-client
+
+set interfaces vxlan vxlan101 source-address 10.0.1.208
+set interfaces vxlan vxlan101 vni 101
+set interfaces vxlan vxlan101 mtu 1500
+
+set interfaces vxlan vxlan120 vni 120
+set interfaces vxlan vxlan120 mtu 1500
+set interfaces vxlan vxlan120 remote 10.0.0.66
+set interfaces vxlan vxlan130 vni 130
+set interfaces vxlan vxlan130 mtu 1500
+set interfaces vxlan vxlan130 remote 10.0.0.66
+
+set interfaces bridge br101 address 10.2.1.1/22
+set interfaces bridge br101 description 'client x1'
+set interfaces bridge br101 member interface eth1
+set interfaces bridge br101 member interface vxlan101
+
+
+set interfaces bridge br120 member interface eth2.20
+set interfaces bridge br120 member interface vxlan120 
+set interfaces bridge br130 member interface eth2.30
+set interfaces bridge br130 member interface vxlan130 
+commit
+save
+
+
+----------------------------------------------------------------------
+
+VyOS2 - PORTO
+
+
+sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
+reboot
+
+configure
+set interfaces ethernet eth0 address 10.0.0.66/26
+set interfaces dummy dum0 address 10.0.1.211/32
+set protocols ospf area 0 network 10.0.0.64/26
+set protocols ospf area 0 network 10.0.1.211/32
+set system host-name DCP2
+
+set interfaces ethernet eth2 vif 20
+set interfaces ethernet eth2 vif 30
+
+set protocols bgp system-as 43100
+
+set protocols bgp address-family l2vpn-evpn advertise-all-vni
+set protocols bgp parameters router-id 10.0.1.211
+set protocols bgp neighbor 10.0.1.208 peer-group evpn
+set protocols bgp peer-group evpn update-source dum0
+set protocols bgp peer-group evpn remote-as 43100
+set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
+
+set interfaces vxlan vxlan101 source-address 10.0.1.211
+set interfaces vxlan vxlan101 vni 101
+set interfaces vxlan vxlan101 mtu 1500
+
+set interfaces vxlan vxlan120 vni 120
+set interfaces vxlan vxlan120 mtu 1500
+set interfaces vxlan vxlan120 remote 10.0.1.66
+set interfaces vxlan vxlan130 vni 130
+set interfaces vxlan vxlan130 mtu 1500
+set interfaces vxlan vxlan130 remote 10.0.1.66
+
+set interfaces bridge br101 address 10.2.2.1/22
+set interfaces bridge br101 description 'client x2'
+set interfaces bridge br101 member interface eth1
+set interfaces bridge br101 member interface vxlan101
+
+
+set interfaces bridge br120 member interface eth2.20
+set interfaces bridge br120 member interface vxlan120
+set interfaces bridge br130 member interface eth2.30
+set interfaces bridge br130 member interface vxlan130
+commit
+save
+
+
+
+----------------------------------------------------------------------
+
+VyOS2 - AVEIRO
+
+
+sudo cp /opt/vyatta/etc/config.boot.default /config/config.boot
+reboot
+
+configure
+set interfaces ethernet eth0 address 10.0.0.130/26
+set interfaces dummy dum0 address 10.0.1.212/32
+set protocols ospf area 0 network 10.0.0.128/26
+set protocols ospf area 0 network 10.0.1.212/32
+set system host-name DCA1
+
+set protocols bgp system-as 43100
+
+set protocols bgp address-family l2vpn-evpn advertise-all-vni
+set protocols bgp parameters router-id 10.0.1.212
+set protocols bgp neighbor 10.0.1.208 peer-group evpn
+set protocols bgp peer-group evpn update-source dum0
+set protocols bgp peer-group evpn remote-as 43100
+set protocols bgp peer-group evpn address-family l2vpn-evpn nexthop-self
+
+set interfaces vxlan vxlan101 source-address 10.0.1.212
+set interfaces vxlan vxlan101 vni 101
+set interfaces vxlan vxlan101 mtu 1500
+
+set interfaces bridge br101 address 10.2.3.1/22
+set interfaces bridge br101 description 'client x3'
+set interfaces bridge br101 member interface eth1
+set interfaces bridge br101 member interface vxlan101
+
+commit
+save
+
+----------------------------------------------------------------
+
+PORTO MPLS:
+
+conf t
+mpls ip
+ip cef
+
+router ospf 1
+router-id 2.2.2.2
+
+ip vrf VPN-1
+rd 200:1
+route-target import 200:1
+route-target export 200:1
+
+interface f0/1
+ip address 10.0.0.2 255.255.255.192
+ip ospf 1 area 0
+mpls ip
+no shut
+
+interface f0/0
+! ip address 10.0.2.1 255.255.255.0
+ip vrf forwarding VPN-1
+ip address 10.0.2.1 255.255.255.0
+no shut
+
+int lo0
+ip address 10.0.1.210 255.255.255.255
+ip ospf 1 area 0
+
+router bgp 43100
+bgp router-id 10.10.10.10
+neighbor 10.0.1.209 remote-as 43100 ! C1
+neighbor 10.0.1.209 update-source loopback0
+neighbor 10.0.1.213 remote-as 43100 ! A2
+neighbor 10.0.1.213 update-source loopback0
+
+address-family vpnv4
+
+neighbor 10.0.1.209 activate
+neighbor 10.0.1.209 send-community both
+neighbor 10.0.1.213 activate
+neighbor 10.0.1.213 send-community both
+
+address-family ipv4 vrf VPN-1
+redistribute connected
+end
+write
+
+
+----------------------------------------------------------------
+
+AVEIRO MPLS:
+
+conf t
+
+router ospf 1
+router-id 8.3.3.3
+mpls ip
+ip cef
+
+ip vrf VPN-1
+rd 200:1
+route-target import 200:1
+route-target export 200:1
+
+interface f0/1
+ip address 10.0.0.193 255.255.255.192
+ip ospf 1 area 0
+mpls ip
+no shut
+
+interface f0/0
+ip address 10.0.3.1 255.255.255.0
+ip vrf forwarding VPN-1
+ip address 10.0.3.1 255.255.255.0
+no shut
+
+int lo0
+ip address 10.0.1.213 255.255.255.255
+ip ospf 1 area 0
+
+router bgp 43100
+bgp router-id 10.10.10.12
+neighbor 10.0.1.209 remote-as 43100 ! C1
+neighbor 10.0.1.209 update-source loopback0
+neighbor 10.0.1.210 remote-as 43100 ! P1
+neighbor 10.0.1.210 update-source loopback0
+
+address-family vpnv4
+
+neighbor 10.0.1.209 activate
+neighbor 10.0.1.209 send-community both
+neighbor 10.0.1.210 activate
+neighbor 10.0.1.210 send-community both
+
+address-family ipv4 vrf VPN-1
+redistribute connected
+end 
+write
+
+-----------------------------------------------------------------
+
+COIMBRA MPLS:
+
+conf t
+mpls ip
+ip cef
+
+router ospf 1
+router-id 4.4.3.3
+
+ip vrf VPN-1
+rd 200:1
+route-target import 200:1
+route-target export 200:1
+
+interface f0/1
+ip address 10.0.1.2 255.255.255.192
+mpls ip
+ip ospf 1 area 0
+no shut
+
+interface f0/0
+ip address 10.0.1.1 255.255.255.0
+ip vrf forwarding VPN-1
+ip address 10.0.1.1 255.255.255.0
+no shut
+
+int lo0
+ip address 10.0.1.209 255.255.255.255
+ip ospf 1 area 0
+
+router bgp 43100
+bgp router-id 10.10.10.14
+neighbor 10.0.1.213 remote-as 43100 ! A2
+neighbor 10.0.1.213 update-source Loopback0
+neighbor 10.0.1.210 remote-as 43100 ! P1
+neighbor 10.0.1.210 update-source Loopback0
+
+address-family vpnv4
+
+neighbor 10.0.1.213 activate
+neighbor 10.0.1.213 send-community both
+neighbor 10.0.1.210 activate
+neighbor 10.0.1.210 send-community both
+
+address-family ipv4 vrf VPN-1
+redistribute connected
+end
+write
+
+
+
+---------------------------------------------------------
+
+PC1
+ip 10.1.1.22/24
+save
+
+---------------------------------------------------------
+
+PC2
+ip 10.1.2.32/24
+save
+
+---------------------------------------------------------
+
+PC3
+ip 10.1.1.21/24
+save
+
+---------------------------------------------------------
+
+PC4
+ip 10.1.2.31/24
+save
+
+---------------------------------------------------------
+
+PC5
+ip 10.2.3.101/22
+save
+
+---------------------------------------------------------
+
+PC6
+ip 10.2.2.101/22
+save
+
+---------------------------------------------------------
+
+PC7
+ip 10.2.1.101/22
+save
+
+---------------------------------------------------------
+
+PC17
+ip 10.0.1.10/24 10.0.1.1
+save
+
+---------------------------------------------------------
+PC16
+ip 10.0.2.10/24 10.0.2.1
+save
+
+---------------------------------------------------------
+Z3
+ip 10.0.3.10/24 10.0.3.1
+save
+
+---------------------------------------------------------
+
+

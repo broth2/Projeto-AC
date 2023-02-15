@@ -1,0 +1,52 @@
+Dec 14 04:04:27.041 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Dec 14 04:04:27.043 HYPERVISOR: Started on IP = localhost, TCP port = 59073.
+Dec 14 04:04:27.507 HYPERVISOR: exec_cmd: hypervisor version 
+Dec 14 04:04:27.507 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips 
+Dec 14 04:04:27.507 GENERAL: working_dir=C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips
+Dec 14 04:04:27.508 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips\0d46045f-f7da-4a5a-9ea5-b09aadb40122 
+Dec 14 04:04:27.535 GENERAL: working_dir=C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips\0d46045f-f7da-4a5a-9ea5-b09aadb40122
+Dec 14 04:04:27.535 HYPERVISOR: exec_cmd: vm create LISBOA 1 c7200 
+Dec 14 04:04:27.538 VM: VM LISBOA created.
+Dec 14 04:04:27.539 HYPERVISOR: exec_cmd: vm set_con_tcp_port LISBOA 5000 
+Dec 14 04:04:27.539 HYPERVISOR: exec_cmd: c7200 get_mac_addr LISBOA 
+Dec 14 04:04:27.539 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.540 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 0 0 C7200-IO-FE 
+Dec 14 04:04:27.541 HYPERVISOR: exec_cmd: vm set_disk0 LISBOA 0 
+Dec 14 04:04:27.541 HYPERVISOR: exec_cmd: vm set_exec_area LISBOA 64 
+Dec 14 04:04:27.542 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.542 HYPERVISOR: exec_cmd: vm set_idle_pc LISBOA 0x62a05cec 
+Dec 14 04:04:27.544 HYPERVISOR: exec_cmd: vm set_ios LISBOA C:/Users/nunos/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Dec 14 04:04:27.544 HYPERVISOR: exec_cmd: c7200 set_mac_addr LISBOA ca01.02b0.0000 
+Dec 14 04:04:27.545 HYPERVISOR: exec_cmd: vm set_nvram LISBOA 512 
+Dec 14 04:04:27.546 HYPERVISOR: exec_cmd: vm set_ram LISBOA 512 
+Dec 14 04:04:27.546 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.547 HYPERVISOR: exec_cmd: vm slot_remove_binding LISBOA 0 0 
+Dec 14 04:04:27.547 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.547 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 0 0 C7200-IO-2FE 
+Dec 14 04:04:27.548 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.548 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 1 0 PA-2FE-TX 
+Dec 14 04:04:27.549 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.549 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 2 0 PA-2FE-TX 
+Dec 14 04:04:27.550 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.550 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 3 0 PA-FE-TX 
+Dec 14 04:04:27.551 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.551 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 4 0 PA-A1 
+Dec 14 04:04:27.552 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.552 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 5 0 PA-FE-TX 
+Dec 14 04:04:27.553 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:27.553 HYPERVISOR: exec_cmd: vm slot_add_binding LISBOA 6 0 PA-2FE-TX 
+Dec 14 04:04:29.411 HYPERVISOR: exec_cmd: nio create_udp udp-4bee9b27-70c8-4e4f-9b23-a5040eb492fe 10002 127.0.0.1 10003 
+Dec 14 04:04:29.703 HYPERVISOR: exec_cmd: vm slot_add_nio_binding LISBOA 6 1 udp-4bee9b27-70c8-4e4f-9b23-a5040eb492fe 
+Dec 14 04:04:29.704 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 14 04:04:29.815 HYPERVISOR: exec_cmd: nio create_udp udp-1b29b07b-d880-4907-8e0d-044194267a27 10006 127.0.0.1 10007 
+Dec 14 04:04:29.819 HYPERVISOR: exec_cmd: vm slot_add_nio_binding LISBOA 0 1 udp-1b29b07b-d880-4907-8e0d-044194267a27 
+Dec 14 04:04:29.820 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 15 15:03:18.136 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 15 15:03:18.139 HYPERVISOR: exec_cmd: vm extract_config LISBOA 
+Dec 15 15:03:18.511 HYPERVISOR: exec_cmd: vm get_status LISBOA 
+Dec 15 15:03:18.512 HYPERVISOR: exec_cmd: vm extract_config LISBOA 
+Dec 15 15:03:18.513 HYPERVISOR: exec_cmd: vm delete LISBOA 
+Dec 15 15:03:18.513 VM: VM LISBOA destroyed.
+Dec 15 15:03:18.515 HYPERVISOR: exec_cmd: hypervisor stop 
+Dec 15 15:03:19.002 HYPERVISOR: Stopped.
+Dec 15 15:03:19.002 GENERAL: reset done.

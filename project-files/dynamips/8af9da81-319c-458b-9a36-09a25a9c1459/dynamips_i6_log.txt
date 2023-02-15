@@ -1,0 +1,69 @@
+Jan 05 03:42:22.949 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jan 05 03:42:22.949 HYPERVISOR: Started on IP = localhost, TCP port = 57728.
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips 
+Jan 05 03:42:23.433 GENERAL: working_dir=C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips\80015aac-f821-4590-8734-9e31f731776a 
+Jan 05 03:42:23.433 GENERAL: working_dir=C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips\80015aac-f821-4590-8734-9e31f731776a
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm create AVEIRO 3 c7200 
+Jan 05 03:42:23.433 VM: VM AVEIRO created.
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm set_con_tcp_port AVEIRO 5021 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: c7200 get_mac_addr AVEIRO 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 0 0 C7200-IO-FE 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm set_disk0 AVEIRO 0 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm set_exec_area AVEIRO 64 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.433 HYPERVISOR: exec_cmd: vm set_idle_pc AVEIRO 0x62a05cec 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm set_ios AVEIRO C:/Users/nunos/GNS3/images/IOS/c7200-advipservicesk9-mz.152-4.S5.image 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: c7200 set_mac_addr AVEIRO ca03.2210.0000 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm set_nvram AVEIRO 512 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm set_ram AVEIRO 512 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_remove_binding AVEIRO 0 0 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 0 0 C7200-IO-2FE 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 1 0 PA-2FE-TX 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 2 0 PA-2FE-TX 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 3 0 PA-FE-TX 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 4 0 PA-A1 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 5 0 PA-FE-TX 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:23.449 HYPERVISOR: exec_cmd: vm slot_add_binding AVEIRO 6 0 PA-2FE-TX 
+Jan 05 03:42:30.604 HYPERVISOR: exec_cmd: nio create_udp udp-0e58714e-c3e0-4638-9d66-3524d2d3e7ea 10020 127.0.0.1 10021 
+Jan 05 03:42:30.870 HYPERVISOR: exec_cmd: vm slot_add_nio_binding AVEIRO 1 0 udp-0e58714e-c3e0-4638-9d66-3524d2d3e7ea 
+Jan 05 03:42:30.870 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:31.011 HYPERVISOR: exec_cmd: nio create_udp udp-3cc41a0f-a41a-41d7-b07c-51549cbd46f5 10026 127.0.0.1 10027 
+Jan 05 03:42:31.011 HYPERVISOR: exec_cmd: vm slot_add_nio_binding AVEIRO 1 1 udp-3cc41a0f-a41a-41d7-b07c-51549cbd46f5 
+Jan 05 03:42:31.011 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:32.136 HYPERVISOR: exec_cmd: nio create_udp udp-0946b6d5-01d9-4e7d-a126-88b4ab7eb672 10044 127.0.0.1 10045 
+Jan 05 03:42:32.245 HYPERVISOR: exec_cmd: vm slot_add_nio_binding AVEIRO 0 1 udp-0946b6d5-01d9-4e7d-a126-88b4ab7eb672 
+Jan 05 03:42:32.245 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:42:35.401 HYPERVISOR: exec_cmd: nio create_udp udp-a97c3283-8a3c-4203-8ae3-4bfeb00fde62 10074 127.0.0.1 10075 
+Jan 05 03:42:35.401 HYPERVISOR: exec_cmd: vm slot_add_nio_binding AVEIRO 0 0 udp-a97c3283-8a3c-4203-8ae3-4bfeb00fde62 
+Jan 05 03:42:35.401 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:50:19.354 HYPERVISOR: exec_cmd: vm set_ghost_status AVEIRO 2 
+Jan 05 03:50:19.366 HYPERVISOR: exec_cmd: vm set_ghost_file AVEIRO C:\Users\nunos\GNS3\projects\ct\projetoAC\project-files\dynamips\c7200-advipservicesk9-mz.152-4.S5.image-512.ghost 
+Jan 05 03:50:19.721 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:50:20.073 HYPERVISOR: exec_cmd: vm set_config AVEIRO configs\i3_startup-config.cfg configs\i3_private-config.cfg 
+Jan 05 03:50:20.074 HYPERVISOR: exec_cmd: vm start AVEIRO 
+Jan 05 03:51:11.913 HYPERVISOR: exec_cmd: vm extract_config AVEIRO 
+Jan 05 03:52:12.017 HYPERVISOR: exec_cmd: vm extract_config AVEIRO 
+Jan 05 03:55:45.666 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:55:45.666 HYPERVISOR: exec_cmd: vm stop AVEIRO 
+Jan 05 03:55:46.229 VM: VM AVEIRO shutdown.
+Jan 05 03:55:46.229 HYPERVISOR: exec_cmd: vm extract_config AVEIRO 
+Jan 05 03:58:32.933 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:58:32.936 HYPERVISOR: exec_cmd: vm extract_config AVEIRO 
+Jan 05 03:58:43.606 HYPERVISOR: exec_cmd: vm get_status AVEIRO 
+Jan 05 03:58:43.617 HYPERVISOR: exec_cmd: vm extract_config AVEIRO 
+Jan 05 03:58:43.640 HYPERVISOR: exec_cmd: vm delete AVEIRO 
+Jan 05 03:58:43.640 VM: VM AVEIRO destroyed.
+Jan 05 03:58:43.650 HYPERVISOR: exec_cmd: hypervisor stop 
+Jan 05 03:58:44.012 HYPERVISOR: Stopped.
+Jan 05 03:58:44.012 GENERAL: reset done.

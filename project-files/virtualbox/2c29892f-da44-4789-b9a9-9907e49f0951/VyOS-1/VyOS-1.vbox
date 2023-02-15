@@ -1,0 +1,131 @@
+<ns0:VirtualBox xmlns:ns0="http://www.virtualbox.org/" version="1.19-windows">
+  <ns0:Machine OSType="Linux_64" currentSnapshot="{0e0a555b-a520-45b2-a42e-dd8dc6d6ce2f}" lastStateChange="2022-12-22T15:10:15Z" name="VyOS-1" snapshotFolder="Snapshots" uuid="{2c29892f-da44-4789-b9a9-9907e49f0951}">
+    <ns0:ExtraData>
+      <ns0:ExtraDataItem name="GNS3/Clone" value="yes" />
+      <ns0:ExtraDataItem name="GUI/LastCloseAction" value="PowerOff" />
+      <ns0:ExtraDataItem name="GUI/LastNormalWindowPosition" value="340,209,720,442" />
+    </ns0:ExtraData>
+    <ns0:Snapshot name="reset" timeStamp="2022-12-22T15:10:15Z" uuid="{0e0a555b-a520-45b2-a42e-dd8dc6d6ce2f}">
+      <ns0:Hardware>
+        <ns0:CPU>
+          <ns0:PAE enabled="true" />
+          <ns0:LongMode enabled="true" />
+          <ns0:X2APIC enabled="true" />
+          <ns0:HardwareVirtExLargePages enabled="true" />
+        </ns0:CPU>
+        <ns0:Memory RAMSize="512" />
+        <ns0:Display VRAMSize="16" controller="VMSVGA" />
+        <ns0:BIOS>
+          <ns0:IOAPIC enabled="true" />
+          <ns0:SmbiosUuidLittleEndian enabled="true" />
+        </ns0:BIOS>
+        <ns0:USB>
+          <ns0:Controllers>
+            <ns0:Controller name="OHCI" type="OHCI" />
+            <ns0:Controller name="EHCI" type="EHCI" />
+          </ns0:Controllers>
+        </ns0:USB>
+        <ns0:Network>
+          <ns0:Adapter MACAddress="080027813FBC" enabled="true" slot="0" type="82540EM">
+            <ns0:DisabledModes>
+              <ns0:NAT localhost-reachable="true" />
+              <ns0:InternalNetwork name="intnet" />
+              <ns0:NATNetwork name="NatNetwork" />
+            </ns0:DisabledModes>
+          </ns0:Adapter>
+          <ns0:Adapter MACAddress="0800272E51A2" enabled="true" slot="1" type="82540EM">
+            <ns0:DisabledModes>
+              <ns0:NAT localhost-reachable="true" />
+            </ns0:DisabledModes>
+          </ns0:Adapter>
+          <ns0:Adapter MACAddress="080027BD83FA" enabled="true" slot="2" type="82540EM">
+            <ns0:DisabledModes>
+              <ns0:NAT localhost-reachable="true" />
+            </ns0:DisabledModes>
+          </ns0:Adapter>
+          <ns0:Adapter MACAddress="08002762F67F" enabled="true" slot="3" type="82540EM">
+            <ns0:DisabledModes>
+              <ns0:NAT localhost-reachable="true" />
+            </ns0:DisabledModes>
+          </ns0:Adapter>
+        </ns0:Network>
+        <ns0:AudioAdapter codec="AD1980" driver="WAS" enabled="true" enabledOut="true" useDefault="true" />
+        <ns0:RTC localOrUTC="UTC" />
+        <ns0:Clipboard />
+        <ns0:GuestProperties>
+          <ns0:GuestProperty flags="RDONLYGUEST" name="/VirtualBox/HostInfo/GUI/LanguageID" timestamp="1668697932198028500" value="pt_BR" />
+        </ns0:GuestProperties>
+        <ns0:StorageControllers>
+          <ns0:StorageController Bootable="true" PortCount="2" name="IDE" type="PIIX4" useHostIOCache="true">
+            <ns0:AttachedDevice device="0" hotpluggable="false" passthrough="false" port="1" type="DVD" />
+          </ns0:StorageController>
+          <ns0:StorageController Bootable="true" IDE0MasterEmulationPort="0" IDE0SlaveEmulationPort="1" IDE1MasterEmulationPort="2" IDE1SlaveEmulationPort="3" PortCount="1" name="SATA" type="AHCI" useHostIOCache="false">
+            <ns0:AttachedDevice device="0" hotpluggable="false" port="0" type="HardDisk">
+              <ns0:Image uuid="{84b20888-65da-499a-9fed-7eec8aa4186d}" />
+            </ns0:AttachedDevice>
+          </ns0:StorageController>
+        </ns0:StorageControllers>
+      </ns0:Hardware>
+    </ns0:Snapshot>
+    <ns0:Hardware>
+      <ns0:CPU>
+        <ns0:PAE enabled="true" />
+        <ns0:LongMode enabled="true" />
+        <ns0:X2APIC enabled="true" />
+        <ns0:HardwareVirtExLargePages enabled="true" />
+      </ns0:CPU>
+      <ns0:Memory RAMSize="512" />
+      <ns0:Display VRAMSize="16" controller="VMSVGA" />
+      <ns0:BIOS>
+        <ns0:IOAPIC enabled="true" />
+        <ns0:SmbiosUuidLittleEndian enabled="true" />
+      </ns0:BIOS>
+      <ns0:USB>
+        <ns0:Controllers>
+          <ns0:Controller name="OHCI" type="OHCI" />
+          <ns0:Controller name="EHCI" type="EHCI" />
+        </ns0:Controllers>
+      </ns0:USB>
+      <ns0:Network>
+        <ns0:Adapter MACAddress="080027813FBC" cable="false" enabled="true" slot="0" type="82540EM">
+          <ns0:DisabledModes>
+            <ns0:NAT localhost-reachable="true" />
+            <ns0:InternalNetwork name="intnet" />
+            <ns0:NATNetwork name="NatNetwork" />
+          </ns0:DisabledModes>
+        </ns0:Adapter>
+        <ns0:Adapter MACAddress="0800272E51A2" cable="false" enabled="true" slot="1" type="82540EM">
+          <ns0:DisabledModes>
+            <ns0:NAT localhost-reachable="true" />
+          </ns0:DisabledModes>
+        </ns0:Adapter>
+        <ns0:Adapter MACAddress="080027BD83FA" enabled="true" slot="2" type="82540EM">
+          <ns0:DisabledModes>
+            <ns0:NAT localhost-reachable="true" />
+          </ns0:DisabledModes>
+        </ns0:Adapter>
+        <ns0:Adapter MACAddress="08002762F67F" enabled="true" slot="3" type="82540EM">
+          <ns0:DisabledModes>
+            <ns0:NAT localhost-reachable="true" />
+          </ns0:DisabledModes>
+        </ns0:Adapter>
+      </ns0:Network>
+      <ns0:AudioAdapter codec="AD1980" driver="WAS" enabled="true" enabledOut="true" useDefault="true" />
+      <ns0:RTC localOrUTC="UTC" />
+      <ns0:Clipboard />
+      <ns0:GuestProperties>
+        <ns0:GuestProperty flags="RDONLYGUEST" name="/VirtualBox/HostInfo/GUI/LanguageID" timestamp="1668697932198028500" value="pt_BR" />
+      </ns0:GuestProperties>
+      <ns0:StorageControllers>
+        <ns0:StorageController Bootable="true" PortCount="2" name="IDE" type="PIIX4" useHostIOCache="true">
+          <ns0:AttachedDevice device="0" hotpluggable="false" passthrough="false" port="1" type="DVD" />
+        </ns0:StorageController>
+        <ns0:StorageController Bootable="true" IDE0MasterEmulationPort="0" IDE0SlaveEmulationPort="1" IDE1MasterEmulationPort="2" IDE1SlaveEmulationPort="3" PortCount="1" name="SATA" type="AHCI" useHostIOCache="false">
+          <ns0:AttachedDevice device="0" hotpluggable="false" port="0" type="HardDisk">
+            <ns0:Image uuid="{6667a253-8e9e-4096-ab5c-ee779d82c86c}" />
+          </ns0:AttachedDevice>
+        </ns0:StorageController>
+      </ns0:StorageControllers>
+    </ns0:Hardware>
+  </ns0:Machine>
+</ns0:VirtualBox>
